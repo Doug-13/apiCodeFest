@@ -1,26 +1,22 @@
 const express = require('express');
-const router = express.Router();
+
 //Importar o pacote File System para manipular arquivos
 const fs = require('fs');
 
 //Importar banco de dados de extensão .json
 const data: string = './database.json';
 
-//Instancia o express na variável app
-const app = express()
-//para o express utilizar o json
-app.use(express.json());
+const router = express.Router();
 
 //Listar usuários
-router.get('/api/users', (req: any, res: any) => {
+router.get('/users/', (req: any, res: any) => {
     const jsonData = fs.readFileSync(data);
     //Analisa string Jsone transforma 
     res.send(JSON.parse(jsonData));
 });
 
-
 //Cadastrar usuario
-router.post('/api/users', (req: any, res: any) => {
+router.post('/users/', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
     
@@ -29,7 +25,7 @@ router.post('/api/users', (req: any, res: any) => {
     
     //verifica a quantidade de objetos na base de dados
     let index: number = Object.keys(content).length;
-    // console.log(req.body)
+   
     //criar uma nova chave de objeto somando +1 do total de objetos 
     content[index++] = req.body;
     
@@ -44,7 +40,7 @@ router.post('/api/users', (req: any, res: any) => {
 });
 
 //Editar usuario
-router.put('/api/user/:id', (req: any, res: any) => {
+router.put('/user/:id', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
 
@@ -67,7 +63,7 @@ router.put('/api/user/:id', (req: any, res: any) => {
     res.send(`User with id ${userId} has been updated`)
 });
 
-router.delete('/api/user/:id', (req: any, res: any) => {
+router.delete('/user/:id', (req: any, res: any) => {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
 
@@ -89,3 +85,5 @@ router.delete('/api/user/:id', (req: any, res: any) => {
     //retorno amigável para o usuário que o endpoint
     res.send(`User with id ${userId} has been deleted`);
 });
+
+export default router;
