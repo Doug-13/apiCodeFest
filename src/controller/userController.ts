@@ -10,7 +10,6 @@ async function listUsers(req: Request, res: Response) {
     res.send(JSON.parse(jsonData));
 }
 
-
 async function postUsers(req: Request, res: Response) {
     //atribui a base de dados em nova variavel
     const jsonDataBase = fs.readFileSync(data);
@@ -57,7 +56,6 @@ async function putUser(req: Request, res: Response) {
     
 }
 
-
 async function deleteUser(req: Request, res: Response) {
 
 //atribui a base de dados em nova variavel
@@ -80,10 +78,7 @@ fs.writeFileSync(data, values);
 
 //retorno amigável para o usuário que o endpoint
 res.send(`User with id ${userId} has been deleted`);
-
-
 }
-
 
 export default {
     listUsers,
