@@ -6,11 +6,11 @@ import userController from "../controller/userController";
 router.get('/users/',userController.listUsers);
 
 //Cadastrar usuario
-router.post('/users/',userController.postUsers);
+router.post('/users/',userController.createtUsers);
 
 //Editar usuario
-router.put('/user/:id',userController.putUser);
+// router.put('/user/:id',userController.putUser);
 
-router.delete('/user/:id',userController.deleteUser);
+// router.delete('/user/:id',userController.deleteUser);
     
 export default router;
